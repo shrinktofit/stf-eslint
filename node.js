@@ -1,9 +1,10 @@
 // @ts-check
 
 import node from 'eslint-plugin-n';
+import { defineConfig } from 'eslint/config';
 
 const configs = {
-  recommended: [
+  recommended: defineConfig([
     node.configs['flat/recommended-module'],
     {
       rules: {
@@ -13,7 +14,7 @@ const configs = {
         'n/prefer-global/process': ['error', 'never'],
       },
     },
-  ],
+  ]),
 };
 
 export default {
