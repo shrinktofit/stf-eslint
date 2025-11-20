@@ -32,7 +32,6 @@ importers:
       typescript-eslint:
         specifier: ^8.44.0
         version: 8.44.0(eslint@9.36.0)(typescript@5.9.2)
-    devDependencies:
       vue-eslint-parser:
         specifier: ^10.2.0
         version: 10.2.0(eslint@9.36.0)
