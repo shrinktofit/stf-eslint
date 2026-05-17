@@ -8,7 +8,8 @@ import unicorn from 'eslint-plugin-unicorn';
 
 const recommended = defineConfig([
   eslint.configs.recommended,
-  tsEslint.configs.recommended,
+  tsEslint.configs.recommendedTypeChecked,
+  tsEslint.configs.stylisticTypeChecked,
   stylistic.configs.customize({
     indent: 2,
     semi: true,
@@ -27,6 +28,12 @@ const recommended = defineConfig([
     },
     rules: {
       'unicorn/no-typeof-undefined': 'error',
+      'unicorn/prevent-abbreviations': ['error', {
+        allowList: {
+          evt: true,
+          props: true,
+        },
+      }],
     },
   },
   {
