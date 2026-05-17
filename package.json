@@ -1,31 +1,37 @@
 {
   "name": "@shrinktofit/eslint-config",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "files": [
-    "index.js",
-    "node.js",
-    "vue.js"
+    "lib/**",
+    "!lib/**/*.map"
   ],
   "exports": {
-    ".": "./index.js",
-    "./*": "./*.js"
+    ".": "./lib/index.js",
+    "./*": "./lib/*.js"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "tsc"
+  },
   "dependencies": {
-    "@eslint/js": "^9.36.0",
-    "@stylistic/eslint-plugin": "^5.4.0",
-    "eslint-plugin-n": "^17.23.1",
-    "eslint-plugin-unicorn": "^61.0.2",
-    "eslint-plugin-vue": "^10.4.0",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.0",
-    "vue-eslint-parser": "^10.2.0"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint-plugin-n": "^18.0.1",
+    "eslint-plugin-unicorn": "^64.0.0",
+    "eslint-plugin-vue": "^10.9.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3",
+    "vue-eslint-parser": "^10.4.0"
   },
   "peerDependencies": {
     "eslint": "^9.36.0"
   },
-  "packageManager": "pnpm@10.12.3+sha512.467df2c586056165580ad6dfb54ceaad94c5a30f80893ebdec5a44c5aa73c205ae4a5bb9d5ed6bb84ea7c249ece786642bbb49d06a307df218d03da41c317417"
+  "packageManager": "pnpm@10.12.3+sha512.467df2c586056165580ad6dfb54ceaad94c5a30f80893ebdec5a44c5aa73c205ae4a5bb9d5ed6bb84ea7c249ece786642bbb49d06a307df218d03da41c317417",
+  "devDependencies": {
+    "@types/node": "^25.8.0"
+  }
 }
