@@ -28,12 +28,6 @@ const recommended = defineConfig([
     },
     rules: {
       'unicorn/no-typeof-undefined': 'error',
-      'unicorn/prevent-abbreviations': ['error', {
-        allowList: {
-          evt: true,
-          props: true,
-        },
-      }],
     },
   },
   {
