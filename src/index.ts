@@ -6,8 +6,8 @@ import unicorn from 'eslint-plugin-unicorn';
 
 const recommended = defineConfig([
   eslint.configs.recommended,
-  tsEslint.configs.recommendedTypeChecked,
-  tsEslint.configs.stylisticTypeChecked,
+  tsEslint.configs.recommended,
+  tsEslint.configs.stylistic,
   stylistic.configs.customize({
     indent: 2,
     semi: true,
