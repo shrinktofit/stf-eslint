@@ -21,6 +21,9 @@ export default defineConfig([
     },
   },
   {
-    extends: [stf.configs.recommended],
+    extends: [
+      stf.configs.recommended,
+      stf.configs.conventions,
+    ],
   },
 ]);
