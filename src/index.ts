@@ -181,6 +181,12 @@ const conventions = defineConfig([
           selector: 'enumMember',
           format: ['camelCase'],
         },
+        {
+          selector: 'memberLike',
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
       ],
     },
   },
