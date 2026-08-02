@@ -49,6 +49,9 @@ const recommended = defineConfig([
   {
     files: ['**/*{.ts,.tsx,.cts,.mts}'],
     rules: {
+      '@typescript-eslint/array-type': ['error', {
+        default: 'array-simple',
+      }],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-namespace': ['error', {
         allowDeclarations: true,
