@@ -1,5 +1,11 @@
 # @shrinktofit/eslint-config
 
+## 0.0.12
+
+### Patch Changes
+
+- 708c7dc: Require ESLint 10 and document the Node.js runtime range already required by the bundled ESLint 10 toolchain.
+
 ## 0.0.11
 
 ### Patch Changes
