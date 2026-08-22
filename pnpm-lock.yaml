@@ -14,6 +14,12 @@ importers:
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@9.39.4)
+      '@typescript-eslint/type-utils':
+        specifier: ^8.59.3
+        version: 8.59.3(eslint@9.39.4)(typescript@6.0.3)
+      '@typescript-eslint/utils':
+        specifier: ^8.59.3
+        version: 8.59.3(eslint@9.39.4)(typescript@6.0.3)
       eslint:
         specifier: ^9.36.0
         version: 9.39.4
@@ -26,6 +32,9 @@ importers:
       eslint-plugin-vue:
         specifier: ^10.9.1
         version: 10.9.1(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(vue-eslint-parser@10.4.0(eslint@9.39.4))
+      ts-api-utils:
+        specifier: ^2.5.0
+        version: 2.5.0(typescript@6.0.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3

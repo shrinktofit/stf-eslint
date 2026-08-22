@@ -5,6 +5,7 @@ import stf from './lib/index.js';
 
 export default defineConfig([
   globalIgnores([
+    'lib',
     'node_modules',
     'packages/**/lib',
   ]),
@@ -15,6 +16,7 @@ export default defineConfig([
         projectService: {
           allowDefaultProject: [
             'eslint.config.js',
+            'tests/*.test.js',
           ],
         },
       },
