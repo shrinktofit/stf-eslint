@@ -21,6 +21,9 @@
   "scripts": {
     "prepublishOnly": "node --run build",
     "build": "tsc",
+    "lint": "node --run build && eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --run build && node --test tests/*.test.js",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish"
@@ -28,9 +31,12 @@
   "dependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/type-utils": "^8.59.3",
+    "@typescript-eslint/utils": "^8.59.3",
     "eslint-plugin-n": "^18.0.1",
     "eslint-plugin-unicorn": "^64.0.0",
     "eslint-plugin-vue": "^10.9.1",
+    "ts-api-utils": "^2.5.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
     "vue-eslint-parser": "^10.4.0"

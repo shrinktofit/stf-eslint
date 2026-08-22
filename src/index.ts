@@ -3,6 +3,18 @@ import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 import unicorn from 'eslint-plugin-unicorn';
+import noRedundantVoidOnHandledPromise from './rules/no-redundant-void-on-handled-promise.js';
+
+const rules = {
+  'no-redundant-void-on-handled-promise': noRedundantVoidOnHandledPromise,
+};
+
+const plugin: typeof tsEslint.plugin = {
+  meta: {
+    name: '@shrinktofit/eslint-config',
+  },
+  ...{ rules },
+};
 
 const recommended = defineConfig([
   eslint.configs.recommended,
@@ -47,8 +59,11 @@ const recommended = defineConfig([
     },
   },
   {
-    files: ['**/*{.ts,.tsx,.cts,.mts}'],
+    plugins: {
+      '@shrinktofit': plugin,
+    },
     rules: {
+      '@shrinktofit/no-redundant-void-on-handled-promise': 'error',
       '@typescript-eslint/array-type': ['error', {
         default: 'array-simple',
       }],
@@ -196,6 +211,8 @@ const conventions = defineConfig([
 ]);
 
 export default {
+  meta: plugin.meta,
+  rules,
   configs: {
     recommended,
     conventions,
