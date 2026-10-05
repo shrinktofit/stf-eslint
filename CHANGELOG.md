@@ -1,5 +1,15 @@
 # @shrinktofit/eslint-config
 
+## 0.0.13
+
+### Patch Changes
+
+- d6d0219: Require braces around control-flow bodies and multiline blocks with same-line opening braces, including empty and comment-only blocks.
+
+  Require blank lines before and after function declarations.
+
+  Require multiline array and object literals with three or more items, and consistent line breaks within literals.
+
 ## 0.0.12
 
 ### Patch Changes
