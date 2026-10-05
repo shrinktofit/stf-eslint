@@ -72,6 +72,16 @@ const recommended = defineConfig([
       '@stylistic/object-curly-newline': [
         'error',
         {
+          TSInterfaceBody: 'always',
+          TSEnumBody: 'always',
+          ObjectPattern: { consistent: true },
+          ImportDeclaration: { consistent: true },
+          ExportDeclaration: { consistent: true },
+          TSTypeLiteral: {
+            consistent: true,
+            multiline: true,
+            minProperties: 3,
+          },
           ObjectExpression: {
             consistent: true,
             multiline: true,
