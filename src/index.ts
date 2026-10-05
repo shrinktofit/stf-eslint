@@ -24,7 +24,6 @@ const recommended = defineConfig([
     indent: 2,
     semi: true,
     commaDangle: 'always-multiline',
-    braceStyle: '1tbs',
     arrowParens: true,
   }),
   {
@@ -37,6 +36,7 @@ const recommended = defineConfig([
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unsafe-unary-minus': 'off',
       'eqeqeq': ['error', 'always'],
+      'curly': ['error', 'all'],
     },
   },
   {
@@ -52,10 +52,64 @@ const recommended = defineConfig([
       '@stylistic': stylistic,
     },
     rules: {
+      '@stylistic/array-bracket-newline': [
+        'error',
+        {
+          multiline: true,
+          minItems: 3,
+        },
+      ],
+      '@stylistic/array-element-newline': [
+        'error',
+        {
+          ArrayExpression: {
+            consistent: true,
+            multiline: true,
+            minItems: 3,
+          },
+        },
+      ],
+      '@stylistic/object-curly-newline': [
+        'error',
+        {
+          ObjectExpression: {
+            consistent: true,
+            multiline: true,
+            minProperties: 3,
+          },
+        },
+      ],
+      '@stylistic/object-property-newline': [
+        'error',
+        {
+          allowAllPropertiesOnSameLine: true,
+        },
+      ],
+      '@stylistic/brace-style': [
+        'error',
+        '1tbs',
+        {
+          allowSingleLine: false,
+        },
+      ],
+      '@stylistic/curly-newline': ['error', 'always'],
       '@stylistic/function-call-argument-newline': ['error', 'consistent'],
-      '@stylistic/indent': ['error', 2, {
-        SwitchCase: 0,
-      }],
+      '@stylistic/padding-line-between-statements': [
+        'error',
+        {
+          blankLine: 'always', prev: '*', next: 'function',
+        },
+        {
+          blankLine: 'always', prev: 'function', next: '*',
+        },
+      ],
+      '@stylistic/indent': [
+        'error',
+        2,
+        {
+          SwitchCase: 0,
+        },
+      ],
     },
   },
   {
@@ -64,22 +118,31 @@ const recommended = defineConfig([
     },
     rules: {
       '@shrinktofit/no-redundant-void-on-handled-promise': 'error',
-      '@typescript-eslint/array-type': ['error', {
-        default: 'array-simple',
-      }],
+      '@typescript-eslint/array-type': [
+        'error',
+        {
+          default: 'array-simple',
+        },
+      ],
       '@typescript-eslint/no-floating-promises': 'error',
-      '@typescript-eslint/no-namespace': ['error', {
-        allowDeclarations: true,
-      }],
-      '@typescript-eslint/no-unused-vars': ['error', {
-        args: 'all',
-        argsIgnorePattern: '^_',
-        caughtErrors: 'all',
-        caughtErrorsIgnorePattern: '^_',
-        destructuredArrayIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-        ignoreRestSiblings: true,
-      }],
+      '@typescript-eslint/no-namespace': [
+        'error',
+        {
+          allowDeclarations: true,
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
 ]);
@@ -182,15 +245,22 @@ const classMemberOrder = [
 const conventions = defineConfig([
   {
     rules: {
-      '@typescript-eslint/explicit-member-accessibility': ['error', {
-        accessibility: 'no-public',
-      }],
-      '@typescript-eslint/member-ordering': ['error', {
-        default: 'never',
-        classes: classMemberOrder,
-        classExpressions: classMemberOrder,
-      }],
-      '@typescript-eslint/naming-convention': ['error',
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          accessibility: 'no-public',
+        },
+      ],
+      '@typescript-eslint/member-ordering': [
+        'error',
+        {
+          default: 'never',
+          classes: classMemberOrder,
+          classExpressions: classMemberOrder,
+        },
+      ],
+      '@typescript-eslint/naming-convention': [
+        'error',
         {
           selector: 'enum',
           format: ['PascalCase'],

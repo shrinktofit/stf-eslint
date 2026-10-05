@@ -463,10 +463,23 @@ const noRedundantVoidOnHandledPromise: TSESLint.RuleModule<'redundantVoid', Opti
         }
 
         const previousToken = sourceCode.getTokenBefore(node.parent);
-        const expressionStartRequiresGuard = ['(', '[', '`', '+', '-', '/', '<']
+        const expressionStartRequiresGuard = [
+          '(',
+          '[',
+          '`',
+          '+',
+          '-',
+          '/',
+          '<',
+        ]
           .includes(followingSyntaxToken.value);
         const previousTokenEndsStatement = previousToken === null
-          || [';', '{', '}', ':'].includes(previousToken.value);
+          || [
+            ';',
+            '{',
+            '}',
+            ':',
+          ].includes(previousToken.value);
         const canAutofix = !expressionStartRequiresGuard || previousTokenEndsStatement;
 
         context.report({
