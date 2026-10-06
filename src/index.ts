@@ -127,7 +127,13 @@ const recommended = defineConfig([
       '@shrinktofit': plugin,
     },
     rules: {
-      '@shrinktofit/multiline-container-member-newline': 'error',
+      '@shrinktofit/multiline-container-member-newline': [
+        'error',
+        {
+          ImportDeclaration: true,
+          ExportDeclaration: true,
+        },
+      ],
       '@shrinktofit/no-redundant-void-on-handled-promise': 'error',
       '@typescript-eslint/array-type': [
         'error',
