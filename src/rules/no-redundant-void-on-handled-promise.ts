@@ -52,7 +52,10 @@ function unwrapTransparentExpressions(expression: TSESTree.Expression): TSESTree
   }
 }
 
-const noRedundantVoidOnHandledPromise: TSESLint.RuleModule<'redundantVoid', Options> = ESLintUtils.RuleCreator<RuleDocs>(
+const noRedundantVoidOnHandledPromise: TSESLint.RuleModule<
+  'redundantVoid',
+  Options
+> = ESLintUtils.RuleCreator<RuleDocs>(
   (name) => `https://github.com/shrinktofit/stf-eslint/blob/main/docs/rules/${name}.md`,
 )({
   name: 'no-redundant-void-on-handled-promise',
@@ -71,7 +74,8 @@ const noRedundantVoidOnHandledPromise: TSESLint.RuleModule<'redundantVoid', Opti
         properties: {
           checkThenables: {
             type: 'boolean',
-            description: 'Whether to check structural Thenable values in addition to native Promises.',
+            description:
+              'Whether to check structural Thenable values in addition to native Promises.',
           },
         },
       },

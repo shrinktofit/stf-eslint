@@ -3,9 +3,11 @@ import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 import unicorn from 'eslint-plugin-unicorn';
+import multilineContainerMemberNewline from './rules/multiline-container-member-newline.js';
 import noRedundantVoidOnHandledPromise from './rules/no-redundant-void-on-handled-promise.js';
 
 const rules = {
+  'multiline-container-member-newline': multilineContainerMemberNewline,
   'no-redundant-void-on-handled-promise': noRedundantVoidOnHandledPromise,
 };
 
@@ -59,16 +61,6 @@ const recommended = defineConfig([
           minItems: 3,
         },
       ],
-      '@stylistic/array-element-newline': [
-        'error',
-        {
-          ArrayExpression: {
-            consistent: true,
-            multiline: true,
-            minItems: 3,
-          },
-        },
-      ],
       '@stylistic/object-curly-newline': [
         'error',
         {
@@ -89,12 +81,6 @@ const recommended = defineConfig([
           },
         },
       ],
-      '@stylistic/object-property-newline': [
-        'error',
-        {
-          allowAllPropertiesOnSameLine: true,
-        },
-      ],
       '@stylistic/brace-style': [
         'error',
         '1tbs',
@@ -102,15 +88,29 @@ const recommended = defineConfig([
           allowSingleLine: false,
         },
       ],
+      '@stylistic/max-len': [
+        'error',
+        {
+          code: 100,
+          tabWidth: 2,
+          ignoreUrls: true,
+          ignoreRegExpLiterals: true,
+          ignoreTemplateLiterals: true,
+        },
+      ],
       '@stylistic/curly-newline': ['error', 'always'],
       '@stylistic/function-call-argument-newline': ['error', 'consistent'],
       '@stylistic/padding-line-between-statements': [
         'error',
         {
-          blankLine: 'always', prev: '*', next: 'function',
+          blankLine: 'always',
+          prev: '*',
+          next: 'function',
         },
         {
-          blankLine: 'always', prev: 'function', next: '*',
+          blankLine: 'always',
+          prev: 'function',
+          next: '*',
         },
       ],
       '@stylistic/indent': [
@@ -127,6 +127,7 @@ const recommended = defineConfig([
       '@shrinktofit': plugin,
     },
     rules: {
+      '@shrinktofit/multiline-container-member-newline': 'error',
       '@shrinktofit/no-redundant-void-on-handled-promise': 'error',
       '@typescript-eslint/array-type': [
         'error',

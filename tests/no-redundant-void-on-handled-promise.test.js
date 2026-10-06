@@ -437,7 +437,8 @@ promise.then(onFulfilled, onRejected);
         `,
       },
       /// @case
-      /// A structural Thenable exposes catch and receives a callable handler with checkThenables enabled.
+      /// A structural Thenable exposes catch and receives a callable handler
+      /// with checkThenables enabled.
       /// @expect
       /// Type information proves the receiver is Thenable and the void is removed when opted in.
       {
@@ -626,7 +627,8 @@ promise.catch?.(handleError);
         `,
       },
       /// @case
-      /// Control flow proves an optional Thenable catch property exists when checkThenables is enabled.
+      /// Control flow proves an optional Thenable catch property exists
+      /// when checkThenables is enabled.
       /// @expect
       /// The narrowed method handles rejection and the redundant void is removed when opted in.
       {
