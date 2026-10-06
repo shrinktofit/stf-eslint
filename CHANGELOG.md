@@ -1,5 +1,11 @@
 # @shrinktofit/eslint-config
 
+## 0.0.16
+
+### Patch Changes
+
+- 45d90ca: Check multiline named imports and exports with per-node options enabled in the recommended config.
+
 ## 0.0.15
 
 ### Patch Changes
