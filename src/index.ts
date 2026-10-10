@@ -54,30 +54,21 @@ const recommended = defineConfig([
       '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/array-bracket-newline': [
-        'error',
-        {
-          multiline: true,
-          minItems: 3,
-        },
-      ],
       '@stylistic/object-curly-newline': [
         'error',
         {
           TSInterfaceBody: 'always',
           TSEnumBody: 'always',
-          ObjectPattern: { consistent: true },
+          ObjectPattern: { consistent: true, minProperties: 4 },
           ImportDeclaration: { consistent: true },
           ExportDeclaration: { consistent: true },
           TSTypeLiteral: {
             consistent: true,
-            multiline: true,
-            minProperties: 3,
+            minProperties: 4,
           },
           ObjectExpression: {
             consistent: true,
-            multiline: true,
-            minProperties: 3,
+            minProperties: 4,
           },
         },
       ],
@@ -132,6 +123,7 @@ const recommended = defineConfig([
         {
           ImportDeclaration: true,
           ExportDeclaration: true,
+          minItems: 4,
         },
       ],
       '@shrinktofit/no-redundant-void-on-handled-promise': 'error',

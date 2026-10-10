@@ -3,13 +3,14 @@ import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 export interface MultilineContainerMemberNewlineOptions {
   ImportDeclaration?: boolean;
   ExportDeclaration?: boolean;
+  minItems?: number;
 }
 
 type Options = [MultilineContainerMemberNewlineOptions];
 
 const multilineContainerMemberNewline = ESLintUtils.RuleCreator(
   (name) => `https://github.com/shrinktofit/stf-eslint/blob/main/docs/rules/${name}.md`,
-)<Options, 'memberOnNewline'>({
+)<Options, 'memberOnNewline' | 'arrayOnNewline'>({
   name: 'multiline-container-member-newline',
   meta: {
     type: 'layout',
@@ -24,11 +25,13 @@ const multilineContainerMemberNewline = ESLintUtils.RuleCreator(
         properties: {
           ImportDeclaration: { type: 'boolean' },
           ExportDeclaration: { type: 'boolean' },
+          minItems: { type: 'integer', minimum: 1 },
         },
       },
     ],
     messages: {
       memberOnNewline: 'Each member of a multiline container must start on a separate line.',
+      arrayOnNewline: 'Arrays with {{count}} or more slots must use multiline brackets.',
     },
   },
   defaultOptions: [{ ImportDeclaration: false, ExportDeclaration: false }],
@@ -41,6 +44,41 @@ const multilineContainerMemberNewline = ESLintUtils.RuleCreator(
       members: ReadonlyArray<TSESTree.Node | null>,
       isArray = false,
     ): void {
+      if (isArray && options.minItems !== undefined && members.length >= options.minItems) {
+        const openingBracket = sourceCode.getFirstToken(node)!;
+        const closingBracket = node.type === 'ArrayPattern' && node.typeAnnotation
+          ? sourceCode.getTokenBefore(node.typeAnnotation)!
+          : sourceCode.getLastToken(node)!;
+        const firstToken = sourceCode.getTokenAfter(openingBracket, { includeComments: true })!;
+        const lastToken = sourceCode.getTokenBefore(closingBracket, { includeComments: true })!;
+        const needsOpeningLinebreak = openingBracket.loc.end.line === firstToken.loc.start.line;
+        const needsClosingLinebreak = lastToken.loc.end.line === closingBracket.loc.start.line;
+        if (needsOpeningLinebreak) {
+          context.report({
+            loc: openingBracket.loc,
+            messageId: 'arrayOnNewline',
+            data: { count: options.minItems },
+            fix(fixer) {
+              // Cover the bracket so competing spacing fixes cannot delete adjacent comments.
+              return fixer.replaceText(openingBracket, openingBracket.value + lineEnding);
+            },
+          });
+        }
+        if (needsClosingLinebreak) {
+          context.report({
+            loc: closingBracket.loc,
+            messageId: 'arrayOnNewline',
+            data: { count: options.minItems },
+            fix(fixer) {
+              const range: [number, number] = [
+                sourceCode.getTokenBefore(closingBracket)!.range[0],
+                closingBracket.range[0],
+              ];
+              return fixer.replaceTextRange(range, sourceCode.text.slice(...range) + lineEnding);
+            },
+          });
+        }
+      }
       if (node.loc.start.line === node.loc.end.line) {
         return;
       }
