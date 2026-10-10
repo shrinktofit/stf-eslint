@@ -1,5 +1,13 @@
 # @shrinktofit/eslint-config
 
+## 0.0.17
+
+### Patch Changes
+
+- e8ff560: Require multiline arrays and objects only at four or more members, while preserving
+  inline or multiline layouts below that threshold. Keep multiline member separation
+  and named import/export checks.
+
 ## 0.0.16
 
 ### Patch Changes
