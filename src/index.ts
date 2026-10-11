@@ -89,7 +89,7 @@ const recommended = defineConfig([
           ignoreTemplateLiterals: true,
         },
       ],
-      '@stylistic/curly-newline': ['error', 'always'],
+      '@stylistic/curly-newline': ['error', { minElements: 1 }],
       '@stylistic/function-call-argument-newline': ['error', 'consistent'],
       '@stylistic/padding-line-between-statements': [
         'error',
