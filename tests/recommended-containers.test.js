@@ -200,3 +200,47 @@ void test('recommended preserves CRLF line endings when expanding an array', asy
   assert.equal(result.errorCount, 0, JSON.stringify(result.messages));
   assert.equal(result.output, 'export const values = [\r\n  1,\r\n  2,\r\n  3,\r\n  4,\r\n];\r\n');
 });
+
+void test('recommended expands braces around multiline named imports and exports', async () => {
+  /// @case
+  /// Named imports and re-exports split members across lines but leave both braces beside members.
+  /// @expect
+  /// Lint rejects the partial layout, fixes both brace boundaries, and a second fix is stable.
+  for (const { code, expected } of [
+    {
+      code: 'import { rollupPluginAssetUUID,\n  transformAssetUUIDImports }'
+        + ' from \'./features/rollup-plugin-asset-uuid.js\';\n'
+        + 'export { rollupPluginAssetUUID, transformAssetUUIDImports };\n',
+      expected: 'import {\n  rollupPluginAssetUUID,\n  transformAssetUUIDImports,\n}'
+        + ' from \'./features/rollup-plugin-asset-uuid.js\';\n'
+        + 'export { rollupPluginAssetUUID, transformAssetUUIDImports };\n',
+    },
+    {
+      code: 'import type { Foo,\n  Bar } from \'pkg\';\nexport type { Foo, Bar };\n',
+      expected: 'import type {\n  Foo,\n  Bar,\n} from \'pkg\';\nexport type { Foo, Bar };\n',
+    },
+    {
+      code: 'export { foo,\n  bar } from \'pkg\';\n',
+      expected: 'export {\n  foo,\n  bar,\n} from \'pkg\';\n',
+    },
+    {
+      code: 'export type { Foo,\n  Bar } from \'pkg\';\n',
+      expected: 'export type {\n  Foo,\n  Bar,\n} from \'pkg\';\n',
+    },
+    {
+      code: 'import main, { foo, /* keep */\n  bar } from \'pkg\';\n'
+        + 'export { main, foo, bar };\n',
+      expected: 'import main, {\n  foo, /* keep */\n  bar,\n} from \'pkg\';\n'
+        + 'export { main, foo, bar };\n',
+    },
+  ]) {
+    const [result] = await eslint.lintText(code, { filePath });
+    assert.ok(result.messages.some((message) =>
+      message.ruleId === '@stylistic/object-curly-newline'));
+    const [fixed] = await fixingEslint.lintText(code, { filePath });
+    assert.equal(fixed.errorCount, 0, JSON.stringify(fixed.messages));
+    assert.equal(fixed.output, expected);
+    const [repeated] = await fixingEslint.lintText(expected, { filePath });
+    assert.equal(repeated.output ?? expected, expected);
+  }
+});
