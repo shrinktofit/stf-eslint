@@ -1,5 +1,11 @@
 # @shrinktofit/eslint-config
 
+## 0.0.18
+
+### Patch Changes
+
+- eed14a7: Require complete brace line breaks for multiline named imports and exports while preserving inline lists.
+
 ## 0.0.17
 
 ### Patch Changes
