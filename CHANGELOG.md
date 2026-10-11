@@ -1,5 +1,12 @@
 # @shrinktofit/eslint-config
 
+## 0.0.19
+
+### Patch Changes
+
+- 19f2b5a: Set curly-newline to minElements: 1 so empty code blocks stay on one line while
+  blocks with statements or class members require line breaks.
+
 ## 0.0.18
 
 ### Patch Changes
