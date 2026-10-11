@@ -60,8 +60,8 @@ const recommended = defineConfig([
           TSInterfaceBody: 'always',
           TSEnumBody: 'always',
           ObjectPattern: { consistent: true, minProperties: 4 },
-          ImportDeclaration: { consistent: true },
-          ExportDeclaration: { consistent: true },
+          ImportDeclaration: { consistent: true, multiline: true },
+          ExportDeclaration: { consistent: true, multiline: true },
           TSTypeLiteral: {
             consistent: true,
             minProperties: 4,

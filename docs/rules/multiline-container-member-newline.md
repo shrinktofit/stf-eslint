@@ -12,7 +12,10 @@ layout. The existing brace rule controls when objects expand.
 The recommended configuration uses a four-member threshold for arrays, objects,
 destructuring patterns, object type literals, and tuple types. Below four members,
 both inline and multiline layouts are allowed. Multiline containers still require
-one member per line. Interface and enum bodies retain their existing multiline style.
+one member per line. Named imports and exports may stay inline; when their named
+list spans multiple lines, the recommended brace rule also requires line breaks
+after the opening brace and before the closing brace. Interface and enum bodies
+retain their existing multiline style.
 
 ## Incorrect
 
